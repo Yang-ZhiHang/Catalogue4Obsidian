@@ -26,9 +26,17 @@ def show_file_in_dir(directory_path, n=2):
     :return:
     """
     if n == 2:
-        output_file_path = "D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\{}.md".format(directory_path.split('\\')[-1])
+        if os.path.exists("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue"):
+            output_file_path = "D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\{}.md".format(
+                directory_path.split('\\')[-1])
+        else:
+            os.mkdir("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue")
     elif n == 3:
-        output_file_path = "D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\Third-Level-Catalogue\\{}.md".format(directory_path.split('\\')[-1])
+        if os.path.exists("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\Third-Level-Catalogue"):
+            output_file_path = ("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\Third-Level"
+                                "-Catalogue\\{}.md").format(directory_path.split('\\')[-1])
+        else:
+            os.mkdir("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\Third-Level-Catalogue")
 
     if directory_path.split('\\')[-1] == 'images':
         pass
@@ -78,8 +86,9 @@ def show_all_in_dir(first_level_directory_path, ignore_file: list):
                     second_level_directory_path = file_path
 
                     # 输出文件夹名称，追加父级目录到括号中
-                    print('\t|- ' + second_level_directory_path.split('\\')[-1] + '(' + first_level_directory_path.split('\\')[
-                        -1] + ')')
+                    print('\t|- ' + second_level_directory_path.split('\\')[-1] + '(' +
+                          first_level_directory_path.split('\\')[
+                              -1] + ')')
 
                     if second_level_directory_path.split('\\')[-1] == 'images':
                         pass
