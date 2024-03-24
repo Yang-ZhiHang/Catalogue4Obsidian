@@ -2,14 +2,14 @@ import os
 
 
 # def write_to_catalogue(directory):
-#     directory_path = 'D:\\ABitResource\\AAANotes\\' + directory
-#     output_file_path = 'D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\' + directory + '.md'
+#     directory_path = "D:\\ABitResource\\AAANotes\\" + directory
+#     output_file_path = "D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\" + directory + ".md"
 #     try:
-#         with open(output_file_path, 'w', encoding='utf-8') as output_file:
+#         with open(output_file_path, "w", encoding="utf-8") as output_file:
 #             # 只遍历根目录下的所有文件夹和文件
 #             for file in os.listdir(directory_path):
 #                 if os.path.isfile(os.path.join(directory_path, file)):
-#                     output_file.write('[[' + file + ']]\n')
+#                     output_file.write("[[" + file + "]]\n")
 #                 # elif os.path.isdir(os.path.join(directory_path, file)):
 #                 #     output_file.write()
 #         print(f"File names have been successfully written to {output_file_path}")
@@ -17,7 +17,7 @@ import os
 #         print(f"An error occurred: {e}")
 
 
-def show_file_in_dir(directory_path, n=2):
+def show_file_in_dir(directory_path, output_dir, n: int = 2):
     """
     根据给定的文件夹路径输出文件夹中的文件（不包括文件夹）
     如果给定的文件夹目录下有文件夹，则对每个文件夹调用 show_file_in_dir 方法
@@ -25,55 +25,69 @@ def show_file_in_dir(directory_path, n=2):
     :param directory_path: 给定的文件夹路径
     :return:
     """
+    global output_file_path
     if n == 2:
-        if os.path.exists("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue"):
-            output_file_path = "D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\{}.md".format(
-                directory_path.split('\\')[-1])
+        if os.path.exists("{}\\Second-Level-Catalogue".format(output_dir)):
+            output_file_path = "{}\\Second-Level-Catalogue\\{}.md".format(output_dir,
+                                                                          directory_path.split("\\")[-1])
         else:
-            os.mkdir("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue")
+            os.mkdir("{}\\Second-Level-Catalogue".format(output_dir))
     elif n == 3:
-        if os.path.exists("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\Third-Level-Catalogue"):
-            output_file_path = ("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\Third-Level"
-                                "-Catalogue\\{}.md").format(directory_path.split('\\')[-1])
+        if os.path.exists("{}\\Second-Level-Catalogue\\Third-Level-Catalogue".format(output_dir)):
+            output_file_path = ("{}\\Second-Level-Catalogue\\Third-Level"
+                                "-Catalogue\\{}.md").format(output_dir, directory_path.split("\\")[-1])
         else:
-            os.mkdir("D:\\ABitResource\\AAANotes\\AAACatalogue\\Second-Level-Catalogue\\Third-Level-Catalogue")
+            os.mkdir("{}\\Second-Level-Catalogue\\Third-Level-Catalogue".format(output_dir))
+    elif n == 4:
+        if os.path.exists("{}\\Second-Level-Catalogue\\Third-Level-Catalogue"
+                          "\\Forth-Level-Catalogue".format(output_dir)):
+            output_file_path = ("{}\\Second-Level-Catalogue\\Third-Level"
+                                "-Catalogue\\Forth-Level-Catalogue\\{}.md").format(output_dir,
+                                                                                   directory_path.split("\\")[-1])
+        else:
+            os.mkdir("{}\\Second-Level-Catalogue\\Third-Level-Catalogue\\Forth"
+                     "-Level-Catalogue".format(output_dir))
 
-    if directory_path.split('\\')[-1] == 'images':
+    if directory_path.split("\\")[-1] == "images":
         pass
     else:
         try:
-            with open(output_file_path, 'w', encoding='utf-8') as output_file:
+            with open(output_file_path, "w", encoding="utf-8") as output_file:
                 # 遍历根目录下的所有文件夹和文件，输出文件
                 for file in os.listdir(directory_path):
                     file_path = os.path.join(directory_path, file)
 
-                    if file == 'images':
+                    if file == "images":
                         pass
                     else:
-                        output_file.write('[[{}]]\n'.format(file))
+                        output_file.write("[[{}]]\n".format(file))
 
                     if os.path.isfile(file_path):
-                        print('\t' * n + '|- ' + file)
+                        print("\t" * n + "|- " + file)
 
                     # 如果遇到文件夹继续输出其中的文件
                     elif os.path.isdir(file_path):
-                        print('\t' * n + '|- ' + file + '(' + directory_path.split('\\')[-1] + ')')
+                        print("\t" * n + "|- " + file + "(" + directory_path.split("\\")[-1] + ")")
                         a = n + 1
                         show_file_in_dir(file_path, a)
         except Exception as e:
             print(f"An error occurred: {e}")
 
 
-def show_all_in_dir(first_level_directory_path, ignore_file: list):
+def show_all_in_dir(first_level_directory_path: str, ignore_file: list, output_dir: str):
     """
     在一级文件夹中寻找二级文件夹，并对每个二级文件夹调用 show_file_in_dir 方法
     :param ignore_file: 需要忽略的文件列表
     :param first_level_directory_path: 一级文件夹路径
     :return:
     """
-    output_file_path = "D:\\ABitResource\\AAANotes\\AAACatalogue\\Catalogue.md"
+    with open("{}\\Catalogue.md".format(output_dir), "w", encoding="utf-8") as f:
+        pass
+    f.close()
+    output_file_path = "{}\\Catalogue.md".format(output_dir)
+
     try:
-        with open(output_file_path, 'w', encoding='utf-8') as output_file:
+        with open(output_file_path, "w", encoding="utf-8") as output_file:
             for file in os.listdir(first_level_directory_path):
                 # 判断是否需要忽略
                 if file in ignore_file:
@@ -86,27 +100,38 @@ def show_all_in_dir(first_level_directory_path, ignore_file: list):
                     second_level_directory_path = file_path
 
                     # 输出文件夹名称，追加父级目录到括号中
-                    print('\t|- ' + second_level_directory_path.split('\\')[-1] + '(' +
-                          first_level_directory_path.split('\\')[
-                              -1] + ')')
+                    print("\t|- " + second_level_directory_path.split("\\")[-1] + "(" +
+                          first_level_directory_path.split("\\")[
+                              -1] + ")")
 
-                    if second_level_directory_path.split('\\')[-1] == 'images':
+                    if second_level_directory_path.split("\\")[-1] == "images":
                         pass
                     else:
-                        output_file.write('[[{}]]\n'.format(second_level_directory_path.split('\\')[-1]))
+                        output_file.write("[[{}]]\n".format(second_level_directory_path.split("\\")[-1]))
 
                     # 输出该文件夹下的文件
                     show_file_in_dir(second_level_directory_path)
+                elif os.path.isfile(file_path):
+                    second_level_directory_path = file_path
+
+                    # 输出文件夹名称，追加父级目录到括号中
+                    print("\t|- " + second_level_directory_path.split("\\")[-1] + "(" +
+                          first_level_directory_path.split("\\")[
+                              -1] + ")")
+                    if second_level_directory_path.split("\\")[-1] == "images":
+                        pass
+                    else:
+                        output_file.write("[[{}]]\n".format(second_level_directory_path.split("\\")[-1]))
+
     except Exception as e:
         print(f"An error occurred: {e}")
 
 
-if __name__ == '__main__':
-    directory_path = 'D:\\ABitResource\\AAANotes'  # 要查看目录的文件夹路径
-    ignore_file = ['.git', '.obsidian', 'AAACatalogue']  # 需要忽略的文件名（包括文件夹和文件）
+if __name__ == "__main__":
+    directory_path = "D:\\ABitResource\\AAANotes"  # 要查看目录的文件夹路径
+    ignore_file = [".git", ".obsidian", "AAACatalogue", "images", "AACatalogue"]  # 需要忽略的文件名（包括文件夹和文件）
+    Catalogue_dir = "D:\\ABitResource\\AAANotes\\AACatalogue"  # 目录的输出路径
 
-    print(directory_path.split('\\')[-1])
+    print(directory_path.split("\\")[-1])
 
-    show_all_in_dir(directory_path, ignore_file)
-
-    # write_to_catalogue('NLP')
+    show_all_in_dir(directory_path, ignore_file, Catalogue_dir)
