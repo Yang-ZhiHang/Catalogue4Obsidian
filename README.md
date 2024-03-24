@@ -22,5 +22,5 @@
 
 `ignore_file` ： 需要忽略的文件的名称（包括文件夹和文件）
 
-控制台会输出 `directory_path` 的目录结构，并在 `catalogue_dir` 路径下生成 `Obsidian` 笔记软件能够使用的目录，自动生成关系图谱。
+控制台会输出 `directory_path` 的目录结构，并在 `catalogue_dir` 路径下生成 `Obsidian` 笔记软件能够使用的目录，用于自动生成关系图谱。
 
