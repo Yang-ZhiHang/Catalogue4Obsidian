@@ -1,7 +1,7 @@
 import os
 
 
-def show_file_in_dir(
+def _show_file_in_dir(
         directory_path: str,
         output_dir: str,
         n: int = 2
@@ -56,12 +56,12 @@ def show_file_in_dir(
                     elif os.path.isdir(file_path):
                         print("\t" * n + "|- " + file + "(" + directory_path.split("\\")[-1] + ")")
                         a = n + 1
-                        show_file_in_dir(file_path, output_dir, a)
+                        _show_file_in_dir(file_path, output_dir, a)
         except Exception as e:
             print(f"An error occurred: {e}")
 
 
-def show_all_in_dir(
+def _show_all_in_dir(
         first_level_directory_path: str,
         ignore_files: list,
         output_dir: str
@@ -102,7 +102,7 @@ def show_all_in_dir(
                         output_file.write("[[{}]]\n".format(second_level_directory_path.split("\\")[-1]))
 
                     # 输出该文件夹下的文件
-                    show_file_in_dir(second_level_directory_path, output_dir)
+                    _show_file_in_dir(second_level_directory_path, output_dir)
                 elif os.path.isfile(file_path):
                     second_level_directory_path = file_path
 
@@ -119,7 +119,7 @@ def show_all_in_dir(
         print(f"An error occurred: {e}")
 
 
-def generateCatalogue(
+def generate_catalogue(
         first_level_directory_path: str,
         ignore_files: list,
         output_dir: str
@@ -131,4 +131,4 @@ def generateCatalogue(
     :return:
     """
     print(first_level_directory_path.split("\\")[-1])
-    show_all_in_dir(first_level_directory_path, ignore_files, output_dir)
+    _show_all_in_dir(first_level_directory_path, ignore_files, output_dir)
