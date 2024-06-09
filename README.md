@@ -1,24 +1,50 @@
-# 项目说明
+# Catalogue for Obsidian
 
-**项目名称**：Catalogue for Obsidian
+## News
 
-**项目目的**：快速生成指定文件夹路径的目录，便于使用 `Obsidian` 查看关系图谱
+🚀Jun. 09, 2024: v0.2.0 released, fixed some bugs and optimized code.
 
-**项目参数**：
-
-`retrieve.py` : 递归扫描文件的功能模块
+🚀May. 10, 2024: v0.1.1 released, added LICENSE.
 
 
 
-## 使用说明
+## Description
+
+**What can it do?**
+
+Quickly generate the directory of the specified folder (only for `Obsidian` view of the relationship graph)
+
+快速生成指定文件夹的目录（仅用于 `Obsidian` 查看关系图谱）
+
+
+
+> What's Obsidian?
+
+A note-taking software.
+
+一个笔记软件。
+
+
+
+**The Structure of The Project**
+
+`main.py` : Where to Get Start.
+
+`retrieve.py` : Recursive scan file function module.
+
+
+
+## Get Started
 
 打开 `main.py` 文件，修改 `if __name__ == "__main__":` 下方的相应参数
 
-`directory_path` : 文件夹的路径（用于生成该文件夹的目录）
+- `directory_path` : The absolute path of directory to be used for generate catalogue.
 
-`catalogue_dir` : 目录的输出路径（要确保路径存在）
+- `catalogue_directory` : The absolute path to output catalogue.
 
-`ignore_file` : 需要忽略的文件的名称（包括文件夹和文件）
+- `ignore_directories` : The files not to be scanned recursively.
 
-控制台会输出 `directory_path` 的目录结构，并在 `catalogue_dir` 路径下生成 `Obsidian` 笔记软件能够使用的目录，用于自动生成关系图谱。
+The console will output the directory structure of `directory_path` and generate a catalogue in the `catalogue_directory` path that is compatible with the Obsidian note-taking software for automatically creating a relationship graph.
+
+控制台将输出 `directory_path` 的目录结构，并在 `catalogue_directory` 路径下生成 `Obsidian` 笔记软件能够使用的目录，用于自动生成关系图谱。
 
