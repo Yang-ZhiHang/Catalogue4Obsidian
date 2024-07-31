@@ -2,7 +2,7 @@
 
 **语言** 
 
-[English](README)  [Chinese](README_zh)
+[English](README.md)  [Chinese](README_zh.md)
 
 ## 最新消息
 
