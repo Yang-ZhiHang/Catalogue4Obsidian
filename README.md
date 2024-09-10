@@ -1,56 +1,53 @@
 # Catalogue for Obsidian
 
-**Language** 
+**语言** 
 
 [English](README.md)  [Chinese](README_zh.md)
 
-## News
+## 最新消息
 
-🚀Jul. 31, 2024: `v0.2.1` added some optimizations.
+🚀2024年07月31日: `v0.2.1` 做了一些改进。
 
-🚀Jun. 09, 2024: `v0.2.0` fixed some bugs and optimized code.
+🚀2024年06月09日: `v0.2.0` 修复了一些 bug，优化了代码。
 
-🔧May. 10, 2024: `v0.1.1` added LICENSE.
+🚀2024年05月10日: `v0.1.1` 添加了开源许可证。
 
 
 
-## Effect Gif
+## 效果展示
 
 <img src="./assert/output.gif" style="border-radius: 10px;">
 
 
 
-## Description
+## 详细
 
-**What can it do?**
+**这个程序能干啥?**
 
-Quickly generate the catalogue of a specified folder (only for the display of relationship graph in `Obsidian`)
-
-
-
-> What's Obsidian?
-
-A note-taking software.
+快速生成指定文件夹的目录（仅用于 Obsidian 的 **关系图谱** 展示）
 
 
 
-## The Structure of The Project
+> 什么是 Obsidian?
 
-`main.py` : Where to Get Start.
-
-`retrieve.py` : Recursive scan file function module.
+一款好用的笔记软件。
 
 
 
-## Let's Get Start!
+## 项目结构
 
-Open `main.py` ，modify the parameters below `if __name__ == "__main__":` 
+`main.py` : 开始程序文件。
 
-- `folder_path` : The absolute path of folder to be used for generate catalogue.
+`retrieve.py` : 递归扫描文件的功能模块。
 
-- `catalogue_path` : The absolute path to output the catalogue. (The path should be a empty folder, or it will create automatically)
 
-- `ignore_folders` : The files not to be scanned recursively.
 
-The console will output the directory structure of `folder_path` and generate a catalogue in the `catalogue_path` path that is compatible with the Obsidian note-taking software for automatically creating a relationship graph.
+## 使用说明
 
+打开 `main.py` 文件，修改 `if __name__ == "__main__":` 下的一些变量参数，以下是参数说明：
+
+- `folder_path` : 你要生成目录的那个文件夹的绝对路径
+- `catalogue_path` : 生成目录的输出路径（空文件夹的绝对路径，如果没有会自动创建）
+- `ignore_folders` : 屏蔽文件的文件名
+
+控制台会输出 `folder_path` 的文件结构，并在 `catalogue_path` 生成目录文件（用于 Obsidian 软件自动创建关系图谱）
